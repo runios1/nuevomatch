@@ -62,8 +62,8 @@ show "Checking python"
 set_error "Cannot get version of python3"
 check /usr/bin/env python3 --version | cut -d " " -f 2
 
-python_version=$(/usr/bin/env python3 -c "import sys; print('%d.%d' % sys.version_info[0:2])" )
-python35_okay=$( echo $python_version | awk '$1 >= 3.5 {print 1}' )
+python_version=$(/usr/bin/env python3 -c "import sys; print('%d.%d' % sys.version_info[0:2])")
+python35_okay=$(echo "$python_version" | awk -F. '{ if ($1 > 3 || ($1 == 3 && $2 >= 5)) print 1; else print 0; }')
 
 show "Checking python version"
 set_error "Python version should be at least 3.5"
