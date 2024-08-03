@@ -84,10 +84,10 @@ set_error "Cannot access file '$python_include_path/Python.h'. Make sure the pyt
 check [[ -e $python_include_path/Python.h ]]
 
 # Python prerequisites
-libraries=( tensorflow numpy distutils matplotlib )
+libraries=( tensorflow numpy distutils matplotlib tkinter)
 for lib in ${libraries[@]}; do
 	show "Checking Python prerequisite '$lib'"
-	set_error "Cannot import python library $lib. Make sure it is installed."
+	set_error "Cannot import python library $lib. Make sure it is installed. For tkinter you might need to use 'sudo apt install python[version]-tk', for example 'apt install python3.7-tk' for python3.7"
 	check python3 -c \"import $lib\"
 done
 

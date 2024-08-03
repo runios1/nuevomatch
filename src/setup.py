@@ -22,7 +22,26 @@
 ## SOFTWARE.
 
 import os
+import sys
 from distutils.core import setup, Extension
+
+
+def check_python_version():
+    # Get the major, minor, and micro version numbers
+    major, minor, micro = sys.version_info[:3]
+
+    # Define the version range
+    min_version = (3, 5)
+    max_version = (3, 7)
+
+    # Check if the current version is within the range
+    if (major, minor) < min_version or (major, minor) > max_version:
+        raise sys.exit(
+            f"Python version must be between {min_version[0]}.{min_version[1]}.X and {max_version[0]}.{max_version[1]}.X. Current version is {major}.{minor}.{micro}.")
+
+
+check_python_version()
+
 my_path=os.path.dirname(os.path.realpath(__file__))
 bin_dir=os.path.join(my_path, '..', 'bin')
 lib_dir=os.path.join(my_path, '..', 'src')
@@ -30,6 +49,12 @@ include_dir=os.path.join(my_path, '..', 'include')
 bin_dir = os.environ.get('BIN_DIR', bin_dir)
 lib_dir = os.environ.get('SRC_DIR', lib_dir)
 include_dir = os.environ.get('INCLUDE_DIR', include_dir)
+
+install_requirements = [
+    "tensorflow==1.13.1",
+    "numpy==1.16.2",
+    "matplotlib==3.0.3"
+]
 
 # Note: The makefile executes this script from the bin directory
 module=Extension('rqrmi',
@@ -41,4 +66,4 @@ module=Extension('rqrmi',
 
 setup(name='rqrmi',
       version='1.0',
-      ext_modules=[module])
+      ext_modules=[module], install_requires=install_requirements)
