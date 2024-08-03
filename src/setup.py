@@ -23,10 +23,13 @@
 
 import os
 from distutils.core import setup, Extension
-
-bin_dir = os.environ['BIN_DIR']
-lib_dir = os.environ['SRC_DIR']
-include_dir = os.environ['INCLUDE_DIR']
+my_path=os.path.dirname(os.path.realpath(__file__))
+bin_dir=os.path.join(my_path, '..', 'bin')
+lib_dir=os.path.join(my_path, '..', 'src')
+include_dir=os.path.join(my_path, '..', 'include')
+bin_dir = os.environ.get('BIN_DIR', bin_dir)
+lib_dir = os.environ.get('SRC_DIR', lib_dir)
+include_dir = os.environ.get('INCLUDE_DIR', include_dir)
 
 # Note: The makefile executes this script from the bin directory
 module=Extension('rqrmi',
