@@ -53,7 +53,8 @@ include_dir = os.environ.get('INCLUDE_DIR', include_dir)
 install_requirements = [
     "tensorflow==1.13.1",
     "numpy==1.16.2",
-    "matplotlib==3.0.3"
+    "matplotlib==3.0.3",
+    "protobuf==3.20.1"
 ]
 
 # Note: The makefile executes this script from the bin directory

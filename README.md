@@ -21,6 +21,31 @@ Python prerequisites:
 
 # Installation
 
+* Install Python and all of it dependencies from scratch in ubuntu
+```commandline
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.7
+sudo apt-get install python3.7-pip
+sudo apt install python3.7-distutils
+sudo apt-get install python3.7-dev
+sudo apt-get install libpython3.7-dev
+sudo apt install python3.7-tk
+```
+
+* Recommended: If this is going to be your main python:
+```commandline
+ln -sf /usr/bin/python3.7 /usr/local/bin/python3
+export PATH=/usr/local/bin:$PATH
+```
+NOTE: You'll need to do the export command each time you open a terminal. You can add it to your bash_profile to add it for good (not recommended if you're not sure what you do).
+* Install RQRMI python package
+-cd to nuevomatch folder in terminaly
+```commandline
+python3 -m pip install -e src
+```
+
 * Run the configuration script. It checks that all prerequisites are met, and generates a Makefile. 
 ```
 ./configure
